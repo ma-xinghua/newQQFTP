@@ -1,2 +1,2 @@
-# newQQFTP
-正式版本
+# QQFtp
+This is a homework of computer communication 
