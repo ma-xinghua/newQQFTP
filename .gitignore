@@ -1,8 +1,0 @@
-# This repo only accepts .py document
-*.log
-*.ini
-*.pyproj
-*.suo
-*.pyc
-*.sln
-/.vs
