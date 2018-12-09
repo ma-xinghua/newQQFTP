@@ -25,7 +25,7 @@ class mywindow(QtWidgets.QWidget, Ui_Dialog):
     def login(self):
         self.textBrowser.append("Beginning login.")
         try:
-            f.connect("guest","guest","192.168.1.3")
+            f.connect(self.lineEdit_2.text(),self.lineEdit_3.text(),self.lineEdit.text())
             self.textBrowser.append("Login successfully!")
             self.listshow()
         except:
