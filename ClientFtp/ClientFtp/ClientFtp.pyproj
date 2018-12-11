@@ -21,7 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="client.py" />
+    <Compile Include="client.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ClientFtp.py" />
     <Compile Include="Ftp_class.py" />
   </ItemGroup>
