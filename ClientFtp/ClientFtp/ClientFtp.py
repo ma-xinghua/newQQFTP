@@ -25,7 +25,7 @@ class mywindow(QtWidgets.QWidget, Ui_Dialog):
     def login(self):
         self.textBrowser.append("Beginning login.")
         try:
-            f.connect(self.lineEdit_2.text(),self.lineEdit_3.text(),self.lineEdit.text())
+            f.connect("yaolh","public","public.sjtu.edu.cn")
             self.textBrowser.append("Login successfully!")
             self.listshow()
         except:
@@ -93,6 +93,9 @@ class mywindow(QtWidgets.QWidget, Ui_Dialog):
         slm=QStringListModel()         #在listView框中显示所有文件名
         slm.setStringList(f.curdata)
         self.listView.setModel(slm)
+        f.client.dir('.', f.list.append)
+        for i in f.list:
+            self.textBrowser_2.append(i)
         
 if __name__ == "__main__":   
     app = QtWidgets.QApplication(sys.argv)
