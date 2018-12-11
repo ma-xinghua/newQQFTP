@@ -1,4 +1,6 @@
 #coding=utf-8
+import os
+import time
 from ftplib import FTP
 from tkinter.filedialog import askopenfilename
 from tkinter.simpledialog import askstring
@@ -11,7 +13,8 @@ class ftpclass():
         self.username = ''
         self.password = ''
         self.host = ''
-        self.list = []
+        self.size = 0        #储存当前传输文件的大小
+        self.time = 0        #储存时间
         
     def connect(self,user,passwd,host):      #login使用的函数
         self.username = user
@@ -28,9 +31,14 @@ class ftpclass():
         
     def download(self,file):         #下载文件
         local = open(file,'wb')
+        time_start = time.time()
         self.client.retrbinary('RETR '+file,local.write,1024)
+        time_end = time.time()
+        self.time = time_end-time_start
+        self.size = os.path.getsize(file)
+        self.size = self.size/float(1024)
         local.close()
-
+         
     def unpload(self):           #上传文件
         root = tkinter.Tk()      
         root.withdraw()
@@ -38,7 +46,12 @@ class ftpclass():
         root.destroy()
         name = file.split('/')[-1]      #从路径取文件名
         local = open(file,'rb')
+        time_start = time.time()
         self.client.storbinary('STOR '+name,local,1024)
+        time_end = time.time()
+        self.time = time_end-time_start
+        self.size = os.path.getsize(file)
+        self.size = self.size/float(1024)
         local.close()
         self.getcwd()
         
@@ -69,3 +82,4 @@ class ftpclass():
         self.client.rename(dr,dr2)
         self.getcwd()
 
+    

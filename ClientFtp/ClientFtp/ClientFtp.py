@@ -25,9 +25,14 @@ class mywindow(QtWidgets.QWidget, Ui_Dialog):
     def login(self):
         self.textBrowser.append("Beginning login.")
         try:
-            f.connect("yaolh","public","public.sjtu.edu.cn")
+            f.connect(self.lineEdit_2.text(),self.lineEdit_3.text(),self.lineEdit.text())
             self.textBrowser.append("Login successfully!")
             self.listshow()
+            file = open("info.txt",'w')              #将用户这次的登陆信息分三行全部写入info.txt中，格式为地址，用户名，密码
+            file.write(self.lineEdit.text()+'\n')
+            file.write(self.lineEdit_2.text()+'\n')
+            file.write(self.lineEdit_3.text()+'\n')
+            file.close()
         except:
             self.textBrowser.append("ERROR!Failing to login.")
         
@@ -36,7 +41,6 @@ class mywindow(QtWidgets.QWidget, Ui_Dialog):
         self.listshow()
         self.textBrowser.append("Go back.")
         
-
     def enter(self):
         try:
             row = self.listView.currentIndex().row();        #返回点击的所在行
@@ -63,6 +67,7 @@ class mywindow(QtWidgets.QWidget, Ui_Dialog):
             f.unpload()
             self.listshow()
             self.textBrowser.append("You have successfully upload.")
+            self.textBrowser.append("Size: %.2f KB, Time: %.2f s"%(f.size,f.time))  #显示传输文件的大小和时间
         except:
             self.textBrowser.append("EEROR!Failing to upload.")
 
@@ -71,9 +76,10 @@ class mywindow(QtWidgets.QWidget, Ui_Dialog):
             row = self.listView.currentIndex().row()
             dr = f.curdata[row]
             f.download(dr)
-            self.textBrowser.append("You have successfully download %s."%dr)
+            self.textBrowser.append("You have successfully download %s"%dr)
+            self.textBrowser.append("Size: %.2f KB, Time: %.2f s"%(f.size,f.time))    #显示传输文件的大小和时间
         except:
-            self.textBrowser.append("You cannot download that.")
+            self.textBrowser.append("EEROR!Failing to download.")
 
     def delete(self):
         try:
@@ -89,13 +95,18 @@ class mywindow(QtWidgets.QWidget, Ui_Dialog):
         f.client.quit()
         self.close()
 
+    def clicked(self):        #处理在listView中对于每一项鼠标双击的动作，即双击后自动进入该文件夹
+        self.enter()
+
     def listshow(self):
         slm=QStringListModel()         #在listView框中显示所有文件名
         slm.setStringList(f.curdata)
         self.listView.setModel(slm)
-        f.client.dir('.', f.list.append)
-        for i in f.list:
-            self.textBrowser_2.append(i)
+        list=[]                          #用来显示文件夹内文件的详细信息
+        f.client.dir('.', list.append)
+        self.textBrowser_2.clear()     #清除上一次的信息
+        for i in list:
+            self.textBrowser_2.append(i)    #把信息写在“详细信息”框中
         
 if __name__ == "__main__":   
     app = QtWidgets.QApplication(sys.argv)
