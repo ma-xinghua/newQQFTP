@@ -40,8 +40,18 @@ class createwindow(QtWidgets.QWidget, Ui_Dialog_create):
         if (self.checkBox_8.isChecked()):
             self.authority=self.authority+"w"
         #print (self.authority)
+        file = open('userinfo.ini','r',encoding = 'UTF-8')
+        for line in file.readlines():
+            self.information=line.split()
+            if self.userName==self.information[0]:
+                warning6=QMessageBox.warning(self,"警告","该用户名已存在")
+                return
+        file.close()
         if (self.userName==""):
             warning3=QMessageBox.warning(self,"警告","用户名不能为空")
+            return
+        if (self.userPasscode==''):
+            warning4=QMessageBox.warning(self,"警告","密码不能为空")
             return
         if (self.userPasscode!=self.userPasscodeAgain):
             warning1=QMessageBox.warning(self,"警告","两次输入密码不一致")
@@ -49,6 +59,8 @@ class createwindow(QtWidgets.QWidget, Ui_Dialog_create):
         if (self.authority==""):
             warning2=QMessageBox.warning(self,"警告","必须选择一个权限")
             return
+        if (self.Docupass==''):
+            warning5=QMessageBox.warning(self,"警告","路径不能为空")
         if not os.path.exists(self.Docupass):
                os.makedirs(self.Docupass) #如果不存在这个文件夹，就创建一个
         file = open('userinfo.ini', 'a')
@@ -56,6 +68,7 @@ class createwindow(QtWidgets.QWidget, Ui_Dialog_create):
         file.write(self.word)
         file.close()
         information=QMessageBox.information(self,"提示","新用户成功创建")
+        self.close()
 
 class changewindow(QtWidgets.QWidget, Ui_Dialog_change):
     def __init__(self):
@@ -74,7 +87,7 @@ class changewindow(QtWidgets.QWidget, Ui_Dialog_change):
         file.close()
         for line in self.information:
                 self.array= line.split()
-                if((self.userName in self.array) and (self.userPasscode in self.array)):
+                if((self.userName == self.array[0]) and (self.userPasscode == self.array[1])):
                     self.ctr=0
                     if(self.checkBox.isChecked()):
                         self.array[0]=self.lineEdit_3.text()
@@ -126,6 +139,8 @@ class changewindow(QtWidgets.QWidget, Ui_Dialog_change):
             file_new.write(line)
         file_new.close()
         information1=QMessageBox.information(self,"提示","用户信息已经修改")
+        self.close()
+
 
 class mywindow(QtWidgets.QWidget, Ui_Dialog_server):
 

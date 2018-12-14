@@ -33,7 +33,6 @@ def init_ftp_server():
     #是否打开记录
     if enable_logging:
         logging.basicConfig(filename=logging_name,level=logging.INFO)
-    handler.banner = welcome_banner
     handler.masquerade_address = masquerade_address   #处理NAT时的私有地址和共有地址，这里即本机公网ip
     handler.passive_ports = range(passive_ports[0],passive_ports[1])    #被动连接
     server = FTPServer((ip,port),handler)
@@ -48,7 +47,7 @@ def ignor_octothrpe(txt):
             return txt[:x]
         pass
     return txt
-	
+
 def init_user_config():
     f = open(user_config_file,encoding='utf-8')
     while True:
@@ -57,7 +56,7 @@ def init_user_config():
             user_list.append(line.split())
         if not line:
             break
-			
+
 def ftp():   
      init_user_config()
      print ("QQFTP server has been launched!")

@@ -5,19 +5,19 @@ ip = "0.0.0.0"
 #本机绑定端口
 port = "21"
 #上传速度 300Kb/sec
-max_upload = 300 * 1024
+max_upload = 500 * 1024
 #下载速度 300Kb/sec
-max_download = 300 * 1024
+max_download = 500 * 1024
 #最大连接数
 max_cons = 256
 #最多ip连接数
 max_pre_ip = 10
 #被动连接端口
-passive_ports = (9200,9300)
+passive_ports = (10200,10400)
 #是否容许匿名访问
 enable_anonymous = False
 #是否打开日志记录
-enable_logging = True
+enable_logging = False
 #日志记录文件名称
 logging_name = r"pyftp.log"
 #公网ip
