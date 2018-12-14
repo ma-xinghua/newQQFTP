@@ -70,7 +70,7 @@ class Ui_Dialog_server(object):
         self.retranslateUi(Dialog)
         self.toolButton.clicked.connect(Dialog.newuser)
         self.toolButton_4.clicked.connect(Dialog.changeuser)
-        self.toolButton_3.clicked.connect(Dialog.button3)
+        self.toolButton_3.clicked.connect(Dialog.modify)
         self.toolButton_2.clicked.connect(Dialog.start)
         self.toolButton_5.clicked.connect(Dialog.close)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
