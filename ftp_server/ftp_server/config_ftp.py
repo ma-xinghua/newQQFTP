@@ -13,7 +13,7 @@ max_cons = 256
 #最多ip连接数
 max_pre_ip = 10
 #被动连接端口
-passive_ports = (10000,10100)
+passive_ports = (9200,9300)
 #是否容许匿名访问
 enable_anonymous = False
 #是否打开日志记录
@@ -21,9 +21,7 @@ enable_logging = True
 #日志记录文件名称
 logging_name = r"pyftp.log"
 #公网ip
-masquerade_address = "192.168.3.8"
-#默认匿名用户路径
-anonymous_path = r"C:\\ftp"
+masquerade_address = '10.162.107.145'
 #用户名配置文件
 user_config_file = r"userinfo.ini"
 

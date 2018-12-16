@@ -71,8 +71,6 @@ class createwindow(QtWidgets.QWidget, Ui_Dialog_create):
         information=QMessageBox.information(self,"提示","新用户成功创建")
         self.close()
 
-
-
 class changewindow(QtWidgets.QWidget, Ui_Dialog_change):
     def __init__(self):
         super(changewindow, self).__init__()
@@ -211,20 +209,20 @@ class mywindow(QtWidgets.QWidget, Ui_Dialog_server):
 
     # 定义槽函数
     def newuser(self):
-         self.create_app = QtWidgets.QApplication(sys.argv)
-         self.create_show = createwindow()
-         self.create_show.show()
-
+        self.create_app = QtWidgets.QApplication(sys.argv)
+        self.create_show = createwindow()
+        self.create_show.show()
+         
     def changeuser(self):
-         self.change_app = QtWidgets.QApplication(sys.argv)
-         self.change_show = changewindow()
-         self.change_show.show()
-
+        self.change_app = QtWidgets.QApplication(sys.argv)
+        self.change_show = changewindow()
+        self.change_show.show()
+         
     def modify(self):
         self.modify_app = QtWidgets.QApplication(sys.argv)
         self.modify_show = modifywindow()
         self.modify_show.show()
-
+        
     def start(self):
         self.close()
         ftp()

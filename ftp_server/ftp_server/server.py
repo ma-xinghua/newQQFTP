@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'C:\Users\User\Desktop\server.ui'
 #
@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from get_ip import *
+from config_ftp import *
 
 class Ui_Dialog_server(object):
     def setupUi(self, Dialog):
@@ -59,6 +60,9 @@ class Ui_Dialog_server(object):
         self.formLayout.setWidget(19, QtWidgets.QFormLayout.FieldRole, self.label_5)
         self.textBrowser_2 = QtWidgets.QTextBrowser(Dialog)
         self.textBrowser_2.setObjectName("textBrowser_2")
+        port=str(passive_ports)[1:-1]+' 的任意端口'
+        port1=port.replace(',',' 到')
+        self.textBrowser_2.append(port1)
         self.formLayout.setWidget(20, QtWidgets.QFormLayout.FieldRole, self.textBrowser_2)
         self.label_2 = QtWidgets.QLabel(Dialog)
         self.label_2.setObjectName("label_2")
