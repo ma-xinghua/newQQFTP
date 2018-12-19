@@ -7,7 +7,6 @@ from config_ftp import *
 
 #用户信息表，信息储存在userinfo中
 user_list=[]  
-
 def init_ftp_server():
     #用于FTPHandler类的管理员
     authorizer = DummyAuthorizer()    
@@ -28,7 +27,9 @@ def init_ftp_server():
 
     #创建服务器
     #handler用于处理接受到的命令，参数包括超时机制(300s)、最大登陆尝试（3）
-    handler = FTPHandler         
+    #handler = TLS_FTPHandler
+    #handler.certfile = 'keycert.pem' 如果我们有证书的话，这就是证书地址，但是证书太贵了
+    handler = FTPHandler
     handler.authorizer = authorizer   
     #是否打开记录
     if enable_logging:
