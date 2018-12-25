@@ -4,10 +4,10 @@
 ip = "0.0.0.0"
 #本机绑定端口
 port = "21"
-#上传速度 300Kb/sec
-max_upload = 300000 * 1024
-#下载速度 300Kb/sec
-max_download = 300000 * 1024
+#上传速度 
+max_upload = 500 * 1024
+#下载速度 
+max_download = 500 * 1024
 #最大连接数
 max_cons = 256
 #最多ip连接数
@@ -21,7 +21,7 @@ enable_logging = True
 #日志记录文件名称
 logging_name = r"pyftp.log"
 #公网ip
-masquerade_address = '10.162.54.139'
+masquerade_address = '192.168.1.104'
 #用户名配置文件
 user_config_file = r"userinfo.ini"
 
